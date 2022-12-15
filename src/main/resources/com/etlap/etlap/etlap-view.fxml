@@ -48,7 +48,7 @@
                                        <Insets top="20.0" />
                                     </HBox.margin>
                                  </Label>
-                                 <Button mnemonicParsing="false" prefWidth="100.0" text="Emelés">
+                                 <Button mnemonicParsing="false" prefWidth="100.0" text="Emelés" onMouseClicked="#szazalekEmeles">
                                     <HBox.margin>
                                        <Insets top="15.0" />
                                     </HBox.margin>
@@ -67,7 +67,7 @@
                                        <Insets top="5.0" />
                                     </HBox.margin>
                                  </Label>
-                                 <Button mnemonicParsing="false" prefWidth="100.0" text="Emelés" />
+                                 <Button mnemonicParsing="false" prefWidth="100.0" text="Emelés" onMouseClicked="#fixEmeles"/>
                               </children>
                            </HBox>
                         </children>

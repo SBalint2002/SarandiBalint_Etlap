@@ -9,9 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,10 +21,6 @@ import java.util.Optional;
 public class EtlapController {
 
     private EtlapDB db;
-    @FXML
-    private Button newFoodButton;
-    @FXML
-    private Button deleteFoodButton;
     @FXML
     private TableView<Etlap> etlapTable;
     @FXML
@@ -39,6 +35,10 @@ public class EtlapController {
     private Spinner<Integer> fixInput;
     @FXML
     private ListView<String> description;
+    @FXML
+    private Button newFoodButton;
+    @FXML
+    private Button deleteFoodButton;
 
     //-----------------------------INIT----------------------------
     @FXML
@@ -46,8 +46,8 @@ public class EtlapController {
         nevCol.setCellValueFactory(new PropertyValueFactory<>("nev"));
         kategoriaCol.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
         arCol.setCellValueFactory(new PropertyValueFactory<>("ar"));
-        szazalekInput.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 200));
-        fixInput.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10000));
+        szazalekInput.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(5, 50,5,5));
+        fixInput.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(50, 3000,50,50));
         try {
             db = new EtlapDB();
             readEtlap();
@@ -83,6 +83,15 @@ public class EtlapController {
         if (selectedIndex == -1) {
             alert(Alert.AlertType.WARNING,
                     "Előbb válasszon ki egy ételt a táblázatból", "");
+            return null;
+        }
+        return etlapTable.getSelectionModel().getSelectedItem();
+    }
+
+    //Kiválaszt akár üresen is
+    private Etlap getSelectedKajaEmel() {
+        int selectedIndex = etlapTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
             return null;
         }
         return etlapTable.getSelectionModel().getSelectedItem();
@@ -159,5 +168,27 @@ public class EtlapController {
     @FXML
     public void sortList(Event event) {
         etlapTable.getOnSort();
+    }
+
+    //------------------------EMELÉS----------------------------
+
+    @FXML
+    public void szazalekEmeles(MouseEvent actionEvent){
+        Etlap selected = getSelectedKajaEmel();
+        if (selected == null) {
+            Optional<ButtonType> optionalButtonType = alert(Alert.AlertType.CONFIRMATION,"Biztos megszeretné növelni az összes étel árát?","");
+        }else{
+            Optional<ButtonType> optionalButtonType = alert(Alert.AlertType.CONFIRMATION,"Biztos megszeretné növelni a(z) " +selected.getNev()+" árát?","");
+        }
+    }
+
+    @FXML
+    public void fixEmeles(MouseEvent actionEvent){
+        Etlap selected = getSelectedKajaEmel();
+        if (selected == null) {
+            Optional<ButtonType> optionalButtonType = alert(Alert.AlertType.CONFIRMATION,"Biztos megszeretné növelni az összes étel árát?","");
+        }else{
+            Optional<ButtonType> optionalButtonType = alert(Alert.AlertType.CONFIRMATION,"Biztos megszeretné növelni a(z) " +selected.getNev()+" árát?","");
+        }
     }
 }

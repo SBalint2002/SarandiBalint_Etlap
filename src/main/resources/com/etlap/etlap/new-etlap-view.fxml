@@ -41,8 +41,8 @@
          <padding>
             <Insets right="5.0" />
          </padding></Label>
-        <TextField fx:id="nevField" GridPane.columnIndex="1" />
-        <TextArea fx:id="leirasArea" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="nevField" promptText="Név" GridPane.columnIndex="1" />
+        <TextArea fx:id="leirasArea" prefHeight="100.0" prefWidth="200.0" promptText="Leírás" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <MenuButton fx:id="menuButton" mnemonicParsing="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <items>
                 <MenuItem fx:id="eloetelMenuItem" mnemonicParsing="false" onAction="#menuItem1Select" text="előétel" />
