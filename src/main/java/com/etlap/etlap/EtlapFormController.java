@@ -77,13 +77,7 @@ public class EtlapFormController {
                         e.getMessage());
             });
         }
-        Node source = (Node)  actionEvent.getSource();
     }
-
-    //------------------------CLOSE WINDOW-----------------------
-
-
-
 
     //----------------------------ALERT------------------------------
     private Optional<ButtonType> alert(Alert.AlertType alertType, String headerText, String contentText){

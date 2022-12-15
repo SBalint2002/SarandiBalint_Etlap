@@ -127,6 +127,24 @@ public class EtlapController {
 
     @FXML
     public void deleteFoodClick(ActionEvent actionEvent) {
+        Etlap selected = getSelectedKaja();
+        if (selected == null) return;
+
+        Optional<ButtonType> optionalButtonType = alert(Alert.AlertType.CONFIRMATION,"Biztos, hogy törölni szeretné a kiválasztott ételt?","");
+        if (optionalButtonType.isEmpty() || !optionalButtonType.get().equals(ButtonType.OK) && !optionalButtonType.get().equals(ButtonType.YES)){
+            return;
+        }
+        try {
+            if (db.deleteEtel(selected.getId())) {
+                alert(Alert.AlertType.WARNING, "Sikeres Törlés!", "");
+            }else{
+                alert(Alert.AlertType.WARNING, "Sikertelen törlés!", "");
+            }
+            readEtlap();
+        } catch (SQLException e) {
+            sqlAlert(e);
+        }
+        description.getItems().clear();
     }
 
 
