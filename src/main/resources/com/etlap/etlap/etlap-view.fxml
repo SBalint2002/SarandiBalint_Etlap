@@ -18,11 +18,11 @@
     </padding>
    <HBox prefHeight="30.0" prefWidth="200.0" spacing="20.0">
       <children>
-          <Button fx:id="newFoodButton" mnemonicParsing="false" onAction="#onHelloButtonClick" prefWidth="120.0" text="Új étel felvétele">
+          <Button fx:id="newFoodButton" mnemonicParsing="false" onAction="#newFoodClick" prefWidth="120.0" text="Új étel felvétele">
             <HBox.margin>
                <Insets top="10.0" />
             </HBox.margin></Button>
-          <Button fx:id="deleteFoodButton" mnemonicParsing="false" onAction="#onHelloButtonClick" prefWidth="100.0" text="Törlés">
+          <Button fx:id="deleteFoodButton" mnemonicParsing="false" onAction="#deleteFoodClick" prefWidth="100.0" text="Törlés">
             <HBox.margin>
                <Insets top="10.0" />
             </HBox.margin></Button>
@@ -38,7 +38,7 @@
                         <children>
                            <HBox prefHeight="50.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                               <children>
-                                 <Spinner>
+                                 <Spinner fx:id="szazalekInput">
                                     <HBox.margin>
                                        <Insets left="10.0" top="15.0" />
                                     </HBox.margin>
@@ -57,7 +57,7 @@
                            </HBox>
                            <HBox prefHeight="50.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                               <children>
-                                 <Spinner>
+                                 <Spinner fx:id="fixInput">
                                     <HBox.margin>
                                        <Insets left="10.0" />
                                     </HBox.margin>
@@ -77,12 +77,12 @@
          </TitledPane>
       </children>
    </HBox>
-   <TableView prefHeight="250.0" prefWidth="200.0">
+   <TableView prefHeight="250.0" prefWidth="200.0" fx:id="etlapTable">
      <columns>
-       <TableColumn prefWidth="250.0" text="Név" />
-       <TableColumn prefWidth="170.0" text="Kategória" />
-         <TableColumn prefWidth="150.0" text="Ár (Ft)" />
+       <TableColumn prefWidth="250.0" text="Név" fx:id="nevCol"/>
+       <TableColumn prefWidth="170.0" text="Kategória" fx:id="kategoriaCol" />
+         <TableColumn prefWidth="150.0" text="Ár (Ft)" fx:id="arCol"/>
      </columns>
    </TableView>
-   <ListView prefHeight="150.0" prefWidth="200.0" />
+   <ListView prefHeight="120.0" prefWidth="200.0" />
 </VBox>
