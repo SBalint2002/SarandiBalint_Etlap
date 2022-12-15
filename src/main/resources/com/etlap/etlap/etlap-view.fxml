@@ -77,12 +77,12 @@
          </TitledPane>
       </children>
    </HBox>
-   <TableView prefHeight="250.0" prefWidth="200.0" fx:id="etlapTable">
+   <TableView prefHeight="250.0" prefWidth="200.0" fx:id="etlapTable" onSort="#sortList" onMouseClicked="#showDescription">
      <columns>
        <TableColumn prefWidth="250.0" text="Név" fx:id="nevCol"/>
        <TableColumn prefWidth="170.0" text="Kategória" fx:id="kategoriaCol" />
          <TableColumn prefWidth="150.0" text="Ár (Ft)" fx:id="arCol"/>
      </columns>
    </TableView>
-   <ListView prefHeight="120.0" prefWidth="200.0" />
+   <ListView prefHeight="120.0" prefWidth="200.0" fx:id="description"/>
 </VBox>

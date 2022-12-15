@@ -2,9 +2,11 @@ package com.etlap.etlap;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.w3c.dom.events.MouseEvent;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -29,6 +31,8 @@ public class EtlapController {
     private Spinner<Integer> szazalekInput;
     @FXML
     private Spinner<Integer> fixInput;
+    @FXML
+    private ListView<String> description;
 
     @FXML
     private void initialize() {
@@ -65,6 +69,27 @@ public class EtlapController {
         List<Etlap> dogs = db.readEtlap();
         etlapTable.getItems().clear();
         etlapTable.getItems().addAll(dogs);
+    }
+
+    private Etlap getSelectedKaja() {
+        int selectedIndex = etlapTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            alert(Alert.AlertType.WARNING,
+                    "Előbb válasszon ki egy ételt a táblázatból", "");
+            return null;
+        }
+        return etlapTable.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    public void showDescription(Event event) {
+        description.getItems().clear();
+        description.getItems().add(getSelectedKaja().getLeiras());
+    }
+
+    @FXML
+    public void sortList(Event event) {
+        etlapTable.getOnSort();
     }
 
     @FXML
